@@ -1,20 +1,10 @@
 import '@testing-library/jest-dom/extend-expect'
 import { render, fireEvent, waitFor } from '@testing-library/react'
-import { RecoilRoot } from 'recoil'
-import { createMemoryHistory } from 'history'
-import { Router } from 'react-router'
-import SignUp from './'
+import {SignUpRender} from '../../components/Render/SignUp'
 
 describe('Sign Up Form Testing', () => {
-    const history = createMemoryHistory()
     it('Should show email validation on blur', async () => {
-      const { getByLabelText, getByTestId } = render(
-        <RecoilRoot>
-          <Router history={history}>
-            <SignUp />
-          </Router>
-        </RecoilRoot>
-      )
+      const { getByLabelText, getByTestId } = render(<SignUpRender />)
       const input = getByLabelText('Email')
       fireEvent.blur(input)
       await waitFor(() => {
@@ -23,13 +13,7 @@ describe('Sign Up Form Testing', () => {
       })
     })
     it('Should show password validation on blur', async () => {
-      const { getByLabelText, getByTestId } = render(
-        <RecoilRoot>
-          <Router history={history}>
-            <SignUp />
-          </Router>
-        </RecoilRoot>
-      );
+      const { getByLabelText, getByTestId } = render(<SignUpRender />);
       const input = getByLabelText('Password')
       fireEvent.blur(input)
       await waitFor(() => {
@@ -38,13 +22,7 @@ describe('Sign Up Form Testing', () => {
       })
     })
     it('Should validate form fields on submit click', async () => {
-      const { getByText, getByTestId } = render(
-        <RecoilRoot>
-          <Router history={history}>
-            <SignUp />
-          </Router>
-        </RecoilRoot>
-      );
+      const { getByText, getByTestId } = render(<SignUpRender />);
       const button = getByText('Sign Up')
       fireEvent.click(button)
       await waitFor(() => {
